@@ -1,3 +1,21 @@
+<?php
+	session_start();
+	if (isset($_SESSION['id']))
+	{
+		if (isset($_SESSION['Time']))
+		{
+			if ( time() > $_SESSION['Time']+1800)
+			{
+				session_destroy();
+			}
+		} else {
+			$_SESSION['Time'] = time();
+		}
+	} else {
+		header('Location: Authentification.php');
+		exit();
+	}
+?>
 <!doctype html>
 <html lang="fr">
 <head>
@@ -8,6 +26,9 @@
 </head>
 
 <body>
+<form id="deco" action="Authentification.php" method="POST">
+			<input name="logout" type="submit" value="logout" />
+</form>
 <form action="TP_SUTTERLIN_Sebastien.php" method="POST">
 <h1><center>Forum</center></h1>
 <p>
@@ -65,7 +86,7 @@
 
 	if(isset($_POST['pseudo']) AND isset($_POST['titre']) AND isset($_POST['message']) )
 	{
-		$file = fopen("tp.txt", "r+");		//On ouvre le fichier en lecture+écriture, et on place le pointeur au début du fichier.
+		$file = fopen("tp.txt", "a+");		//On ouvre le fichier en lecture+écriture, et on place le pointeur au début du fichier.
 		echo '<br/>';
 		fwrite($file,"Pseudo : ".$_POST['pseudo']."<br/>"."<br/>");     //On écrit le pseudo à la bonne place dans le tableau
 		

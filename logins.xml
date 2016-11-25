@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<logins>
+	<utilisateur>
+		<id>Identifiant</id>
+		<mdp>motdepasse</mdp>
+	</utilisateur>
+	<utilisateur>
+		<id>Dracaufeu</id>
+		<mdp>Smash</mdp>
+	</utilisateur>
+</logins>
